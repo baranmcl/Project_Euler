@@ -15,9 +15,16 @@ def isPrime(n):
     return True
 
 def primeNumber(n):
-    return n
-
-
+    currentPrime = 2
+    primeCount = 1
+    primeLimit = n
+    for i in xrange(3, 9999999, 2):
+        if isPrime(i):
+            currentPrime = i
+            primeCount += 1
+        if primeCount == primeLimit:
+            break
+    return currentPrime
 
 if __name__ == '__main__':
     print(primeNumber(10001))

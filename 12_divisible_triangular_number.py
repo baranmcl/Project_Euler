@@ -12,22 +12,41 @@
 #28: 1,2,4,7,14,28
 #We can see that 28 is the first triangle number to have over five divisors.
 #What is the value of the first triangle number to have over five hundred divisors?
+
+#This factor length algorithm is based from the one on Jason's Code Blog.
+#http://code.jasonbhill.com/sage/project-euler-problem-12/
+#It utilizes the prime number decomposition theorem.
+#Every integer N is the product of powers of prime numbers.
 def factorLen(n):
-    factors = [1]
-    for divisor in xrange(2, (n/2)+1):
-        if n%divisor == 0:
-            factors.append(divisor)
-    factors.append(n)
-    
-    return len(factors)
+    if n % 2 == 0: n = n/2
+    factors = 1
+    count = 0
+    while n % 2 == 0:
+        count += 1
+        n = n/2
+    factors *= (count + 1)
+    p = 3
+    while n != 1:
+        count = 0
+        while n % p == 0:
+            count += 1
+            n = n/p
+        factors *= (count + 1)
+        p += 2
+    return factors
 
-def triNumDivCount(n):
-    tri_sum = 0
-    for i in xrange(1,99999):
-        tri_sum += i
-        if factorLen(tri_sum) > n:
-            return tri_sum, i
+#calculates nth triangular number
+def triangleizer(n):
+    return (n * (n + 1)) / 2
 
+#returns the nth triangular number with divisor limit.
+def triNumFactor(factor_limit):
+    n = 1
+    lnum, rnum = factorLen(n), factorLen(n+1)
+    while lnum*rnum < factor_limit:
+        n += 1
+        lnum, rnum = rnum, factorLen(n+1)
+    return triangleizer(n) , n
 
 if __name__ == '__main__':
-    print(triNumDivCount(5))
+    print(triNumFactor(500))

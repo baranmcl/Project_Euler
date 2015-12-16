@@ -1,6 +1,7 @@
 #Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
-def largeNumSum(n):
-    return sum(n)
+def largeNumSumDigits(n):
+    answer = str(sum(n))
+    return answer[:10]
 
 if __name__ == '__main__':
     numbers = "37107287533902102798797998220837590246510135740250\n\
@@ -105,4 +106,4 @@ if __name__ == '__main__':
     53503534226472524250874054075591789781264330331690"
     
     formatted_numbers = [int(i) for i in numbers.split("\n")]   
-    print(largeNumSum(formatted_numbers))
+    print(largeNumSumDigits(formatted_numbers))

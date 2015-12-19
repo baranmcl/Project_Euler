@@ -30,3 +30,10 @@
 #However, Problem 67, is the same challenge with a triangle containing one-hundred rows; 
 #it cannot be solved by brute force, and requires a clever method! ;o)
 
+def maxPathSum(n):
+    return n
+
+if __name__ == '__main__':
+    triangle = []
+    print(maxPathSum(triangle))
+

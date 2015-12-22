@@ -22,7 +22,7 @@ def sundayCount(start_year, end_year):
             weekday += 1
             weekday %= 7
             if weekday == 0: first_sunday_count += 1
-            if month in [4,6,8,11]: weekday += 30 % 7
+            if month in [4,6,9,11]: weekday += 30 % 7
             elif month == 2:
                 weekday += 28 % 7
                 if year % 4 == 0:

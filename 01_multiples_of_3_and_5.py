@@ -4,10 +4,8 @@
 
 def sumthreefive(n):
     answer = 0
-    for i in range(n):
-        if i % 3 == 0:
-            answer += i
-        elif i % 5 == 0:
+    for i in xrange(n):
+        if i % 3 == 0 or i % 5 == 0:
             answer += i
     return answer
 

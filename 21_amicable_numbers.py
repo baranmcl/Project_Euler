@@ -6,8 +6,21 @@
 
 #Evaluate the sum of all the amicable numbers under 10000.
 
-def amicableNumbers(n):
-    return n
+def sumDivisors(n):
+    answer = 0
+    for i in xrange(1, n):
+        if n  % i == 0: answer += i
+    return answer
+
+def amicableNumbers(limit):
+    amicableList = []
+    for i in xrange(1, limit):
+        x = sumDivisors(i)
+        y = sumDivisors(x)
+        if x != y and i == y:
+            if i not in amicableList: amicableList.append(i)
+            if x not in amicableList: amicableList.append(x)
+    return sum(amicableList)
     
 if __name__ == '__main__':
-    print(amicableNumbers())
+    print(amicableNumbers(10000))

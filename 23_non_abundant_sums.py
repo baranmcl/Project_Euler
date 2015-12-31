@@ -17,9 +17,25 @@
 #numbers is less than this limit.
 
 #Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+def abundantCheck(n):
+    return sum([i for i in xrange(1, int(n/2)+1) if n%i == 0]) > n
 
-def nonAbundantSum(n):
-    return n
+def abundantList():
+    abundantList = []
+    for i in xrange(12, 28123, 2):
+        if abundantCheck(i):
+            abundantList.append(i)
+    return abundantList
+
+def nonAbundantSum():
+    abundants = abundantList()
+    sieve = [False] * 28123
+    for i in xrange(len(abundants)):
+        for j in xrange(i, len(abundants)):
+            if abundants[i]+abundants[j]<1:
+                sieve[abundants[i]+abundants[j]] = True
+    return sum([i for i in xrange(len(sieve)) if not(sieve[i])])
+
 
 if __name__ == '__main__':
     print(nonAbundantSum())

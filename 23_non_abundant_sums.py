@@ -29,12 +29,12 @@ def abundantList():
 
 def nonAbundantSum():
     abundants = abundantList()
-    sieve = [False] * 28123
+    possibleSums = set()
     for i in xrange(len(abundants)):
         for j in xrange(i, len(abundants)):
-            if abundants[i]+abundants[j]<1:
-                sieve[abundants[i]+abundants[j]] = True
-    return sum([i for i in xrange(len(sieve)) if not(sieve[i])])
+            if abundants[i]+abundants[j] < 28123:
+                possibleSums.add(abundants[i]+abundants[j])
+    return sum([i for i in xrange(28123) if i not in possibleSums])
 
 
 if __name__ == '__main__':
